@@ -12,7 +12,11 @@ app.use("/auth", userAuth);
 const workouts = require("./routes/workoutsRoutes");
 app.use("/workouts", workouts);
 
+const nutrition = require("./routes/nutritionTrackingRoute");
+app.use('/nutrition', nutrition);
 
+const nutritionDashboard = require("./routes/nutritionDashboardRoute");
+app.use('/nutritionDash', nutritionDashboard);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

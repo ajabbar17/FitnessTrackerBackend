@@ -54,7 +54,6 @@ exports.signup = async (req, res) => {
     }
 };
 
-// Check for duplicate email controller
 exports.checkDuplicateEmail = async (req, res) => {
     const { email } = req.body;
 
