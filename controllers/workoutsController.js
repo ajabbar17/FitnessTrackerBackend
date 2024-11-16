@@ -18,6 +18,21 @@ const getWorkouts = async (req, res) => {
   }
 };
 
+const getNumberOfWorkouts = async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const result = await pool.query(
+      `SELECT COUNT(id) 
+       FROM UserWorkouts 
+       WHERE user_id = $1`,
+      [userId]
+    );
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.error("Error fetching workouts:", error);
+    res.status(500).json({ error: "Failed to fetch user workouts" });
+  }}
+
 const addWorkout = async (req, res) => {
   const { userId,  plannedDate, status, title, description } = req.body;
 
@@ -60,4 +75,5 @@ module.exports = {
   getWorkouts,
   addWorkout,
   deleteWorkout,
+  getNumberOfWorkouts
 };
